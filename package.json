@@ -1,7 +1,7 @@
 {
-  "name": "hu-vue3-template-js",
-  "version": "0.1.3",
-  "description": "hu-vue3 js模板",
+  "name": "vue-base-plugin",
+  "version": "1.0.1",
+  "description": "vue-base-plugin js模板",
   "author": "ManfredHu",
   "license": "MIT",
   "scripts": {
@@ -12,8 +12,8 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "eslint-fix": "eslint src/**/*.vue --fix",
-    "pub": "npm version patch -f",
-    "version": "rm ./.git/index.lock && git add . && git commit -m 'auto commit' & git push"
+    "pub": "npm run build && npm version patch -f",
+    "version": "sh autocm.sh"
   },
   "dependencies": {
     "axios": "^0.18.0",
