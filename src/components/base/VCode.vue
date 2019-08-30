@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @keyup="onKeyUp" tabindex="0">
     <transition name="fade">
       <div
         class="mask"
@@ -23,7 +23,7 @@
             >的手机
           </p>
           <p class="vcode-hd-desc" v-else>
-            身份信息仅用于合约机购买
+            身份信息仅用于手机购买
           </p>
           <ul class="vcode-hd-numlist">
             <li v-for="(item, idx) in vCodeNums" :key="idx">{{ item }}</li>
@@ -128,7 +128,7 @@ export default {
       return ''
     },
     title() {
-      if (this.type === 'idCard') {
+      if (this.type === 'idcard') {
         return '本人身份证号码校验'
       }
       return '请输入验证码'
@@ -183,6 +183,18 @@ export default {
         }
       }, 1000)
       this.getVCode && this.getVCode()
+    },
+    onKeyUp(e) {
+      const key = parseInt(e.key)
+      if (key >= 0 && key < 10 ) {
+        this.typeText(key)
+      } else if (e.key === 'x') {
+        this.typeText(e.key.toUpperCase())
+      } else if (e.key === 'Backspace') {
+        this.deleteText()
+      } else if (e.key === 'Enter') {
+        this.finishEdit()
+      }
     }
   },
   created() {
