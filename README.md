@@ -53,26 +53,29 @@ export default {
 
 # 组件列表
 
-- [x]数字键盘（需要有数字按键）
-  - [x]长按删除键清除全部文本
-- [x]地区级联组件开发
-  - [x]支持锁定 1 级地区
-- [x]基本弹窗提示 alert 组件
-- [x]左右按钮 confirm 组件（单双按钮点击）
-- [x]滚动返回顶部组件
-  - [ ]支持拖拽
-  - [x]支持超过页面多少高度后显示/滚动超过多少隐藏
-- [x]轮播图无限滚动
-- [ ]分享
-- [x]验证码虚拟键盘
-- [x]身份证虚拟键盘
+- [x] 数字键盘（需要有数字按键）
+  - [x] 长按删除键清除全部文本
+- [x] 地区级联组件开发
+  - [x] 支持锁定 1 级地区
+- [x] 基本弹窗提示 alert 组件
+- [x] 左右按钮 confirm 组件（单双按钮点击）
+- [x] 滚动返回顶部组件
+  - [ ] 支持拖拽
+  - [x] 支持超过页面多少高度后显示/滚动超过多少隐藏
+- [x] 轮播图无限滚动
+- [ ] 分享
+- [x] 验证码虚拟键盘
+- [x] 身份证虚拟键盘
 
 ## 截图
 
 ![浮层](./docs/components/dialog.png)
-![确认框单按钮](./docs/components/confirm_oneBtn.png)
 ![确认框双按钮](./docs/components/confirm_twoBtn.png)
 ![轮播图](./docs/components/swiper.png)
 ![返回顶部](./docs/components/totop.png)
 ![虚拟键盘](./docs/components/keyboard.png)
 ![地区级别连选择](./docs/components/distpicker.png)
+![手机验证码](./docs/components/vcode.png)
+![身份证号](./docs/components/idcard.png)
+![成功提示](./docs/components/toast.png)
+![加载中提示](./docs/components/toast2.png)
