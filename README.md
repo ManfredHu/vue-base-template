@@ -7,7 +7,7 @@
 
 # CSS reset & rem 方案
 
-具体作用原因是因为`src/style/base/import.reset.less`设置了
+具体作用原因是因为`src/style/base/import.reset.less`设置了(初始化)
 
 ```less
 html {
@@ -27,6 +27,9 @@ width: 750 / @rem
 我们书写数值的时候，如测量设计稿宽度为 750x，那么就写`width: 750 / @rem`, 不需要再去换算。
 
 同理，如果实际元素大小为 375px，则应该写 750/@rem
+
+其次，`rem.js`脚本会计算 html 标签的 font-size 动态改变这个值使屏幕宽度一直为`750/@rem`。
+具体实现为: html 的`font-size`为 document.documentElement.clientWidth / 375，最大为 200。
 
 # vConsole
 
@@ -60,7 +63,6 @@ export default {
   - [ ]支持拖拽
   - [x]支持超过页面多少高度后显示/滚动超过多少隐藏
 - [x]轮播图无限滚动
-  - [ ]支持小按钮样式自定义
 - [ ]分享
 - [x]验证码虚拟键盘
 - [x]身份证虚拟键盘
