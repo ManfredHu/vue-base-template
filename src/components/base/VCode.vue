@@ -88,9 +88,13 @@ export default {
   props: {
     type: {
       type: String,
+      validator: (value) => [
+        '',
+        'idcard'
+      ].indexOf(value) !== -1,
       default: ''
     },
-    keyPress: String,
+    keyPress: Function,
     typing: {
       type: Number,
       twoWay: true,
@@ -136,33 +140,33 @@ export default {
   },
   methods: {
     typeText(num) {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'enter',
         value: num
       })
     },
     deleteText() {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'delete',
         value: undefined
       })
     },
     clearText() {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'clear',
         value: undefined
       })
     },
     finishEdit() {
       this.$emit('typing', 0)
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'finish',
         value: undefined
       })
     },
     triggerBlur() {
       this.$emit('typing', 0)
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'cancel',
         value: undefined
       })

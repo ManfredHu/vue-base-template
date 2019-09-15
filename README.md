@@ -79,3 +79,50 @@ export default {
 ![身份证号](./docs/components/idcard.png)
 ![成功提示](./docs/components/toast.png)
 ![加载中提示](./docs/components/toast2.png)
+
+# 单元测试
+
+开源看[vue-test-utils](https://vue-test-utils.vuejs.org/zh/)
+
+## 测试异步行为
+
+`Vue.$nextTick`和`setTimeout`都可以配合 done 来使用，如 Dialog.spec.js 里面
+
+```js
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Dialog from '@/plugin/Dialog/index.vue'
+
+// 使用插件
+const localVue = createLocalVue()
+
+describe('plugin Dialog.vue', () => {
+  it('renders suc', done => {
+    const wrapper = shallowMount(Dialog, {
+      localVue,
+      propsData: {
+        text: ['Dialog', 'Dialog', '12345678901234567890'] // 3行
+      }
+    })
+    const showTime = 1000
+    wrapper.setData({ showTime }) // 展示1S
+    wrapper.setData({ showMask: true })
+    wrapper.vm.show()
+    expect(wrapper.find('.dialog-bd').is('div')).toBe(true)
+    expect(wrapper.find('.dialog-bd').html()).toBe(
+      '<div class="dialog-bd">Dialog<br>Dialog<br>12345678901234567890</div>'
+    )
+    setTimeout(() => {
+      // 1S后消失
+      expect(wrapper.find('.dialog-bd').exists()).toBe(false)
+      done()
+    }, showTime)
+  })
+})
+```
+
+## 点击事件
+
+有同学会好奇我们用到了`v-tap`，但是我们的测试用例写的是`wrapper.find('.comfirm-btn_primary.comfirm-btn').trigger('click')`。
+这是因为我们的`v-tap`指令是适配 click 和 touch 的。在 PC 端会用`click`取代`touchStart/touchEnd`等。
+
+因为 tap 会依据 `touchStart` 和 `touchEnd` 的坐标计算点击，这在测试用例并不容易实现。所以写测试的时候我们最好用 click 替代。

@@ -1,12 +1,7 @@
-import vTap from '../directives/tap'
-import longpress from '../directives/longpress'
+import vTap from '@/directives/tap'
+import longpress from '@/directives/longpress'
 import EventEmitter from 'events'
-import {
-  is,
-  phone,
-  ua,
-  url
-} from 'hu-tool'
+import { is, phone, ua, url } from 'hu-tool'
 import rem from '../helper/rem'
 import cookie from 'js-cookie'
 import dayjs from 'dayjs'
@@ -48,19 +43,24 @@ export default {
     })
 
     // Mount hu-tool
-    const mouteTool = [{
-      name: 'is',
-      value: is
-    }, {
-      name: 'phone',
-      value: phone
-    }, {
-      name: 'ua',
-      value: ua
-    }, {
-      name: 'url',
-      value: url
-    }]
+    const mouteTool = [
+      {
+        name: 'is',
+        value: is
+      },
+      {
+        name: 'phone',
+        value: phone
+      },
+      {
+        name: 'ua',
+        value: ua
+      },
+      {
+        name: 'url',
+        value: url
+      }
+    ]
 
     mouteTool.forEach(item => {
       Vue.prototype[`$${item.name}`] = item.value

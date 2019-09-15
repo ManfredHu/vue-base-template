@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import basePlugin from './plugin/basePlugin'
-import Dialog from './plugin/Dialog'
-import Confirm from './plugin/Confirm'
-import Toast from './plugin/Toast'
+import basePlugin from '@/plugin/basePlugin'
+import Dialog from '@/plugin/Dialog'
+import Confirm from '@/plugin/Confirm'
+import Toast from '@/plugin/Toast'
 
 Vue.use(basePlugin)
 Vue.use(Dialog)

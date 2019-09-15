@@ -21,7 +21,7 @@
     </div>
     <button v-tap.prevent="showKeyBoard">点击拉起虚拟键盘</button>
     <KeyBoard
-      keyPress="onKeyboardPress"
+      :keyPress="onKeyboardPress"
       :typing.sync="typing"
       :phoneText.sync="phoneText"
       blurMask="1"

@@ -2,7 +2,7 @@
   <div>
     <VCode
       :typing.sync="typing"
-      keyPress="onKeyboardPress"
+      :keyPress="onKeyboardPress"
       :vCodeNums.sync="vCodeNums"
       :phone="phone"
       :getVCode="getVCode"

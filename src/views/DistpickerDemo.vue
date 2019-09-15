@@ -6,7 +6,7 @@
       readonly
       v-tap="showHide"
     />
-    <v-distpicker
+    <Distpicker
       :province="select.province"
       :city="select.city"
       :area="select.area"
@@ -16,7 +16,7 @@
       :isShow="isShow"
       @showHide="showHide"
     >
-    </v-distpicker>
+    </Distpicker>
     <div class="content-show">
       <pre><code>{{ select }}</code></pre>
     </div>
@@ -24,10 +24,11 @@
 </template>
 
 <script>
-import VDistpicker from '../components/base/Distpicker'
+import Distpicker from '@/components/base/Distpicker'
 
 export default {
-  components: { VDistpicker },
+  name: 'DistpickerDemo',
+  components: { Distpicker },
   data() {
     return {
       showCode: false,

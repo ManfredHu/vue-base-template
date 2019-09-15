@@ -3,7 +3,7 @@
     <VCode
       type="idcard"
       :typing.sync="typing"
-      keyPress="onKeyboardPress"
+      :keyPress="onKeyboardPress"
       :vCodeNums.sync="idCardNums"
     ></VCode>
   </div>

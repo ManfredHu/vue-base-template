@@ -7,10 +7,7 @@
  * 3.v-tap可以加在带有href跳转链接的a标签上，会自动做页面跳转如 <a v-tap href="https://www.qq.com"></a>
  */
 
-import {
-  is,
-  UA
-} from 'hu-tool'
+import { is, UA } from 'hu-tool'
 // import debug from 'debug'
 // const log = debug('worker:tap')
 
@@ -35,10 +32,14 @@ function isTap(self) {
   }
   const tapObj = self.tapObj
   // 这里的逻辑是为了区分滑动操作
-  const tapX = !is.isNumber(tapObj.distanceX) ||
-    (Math.abs(tapObj.distanceX) < distanceStandard && (tapObj.clientX || tapObj.pageX))
-  const tapY = !is.isNumber(tapObj.distanceY) ||
-    (Math.abs(tapObj.distanceY) < distanceStandard && (tapObj.clientY || tapObj.pageY))
+  const tapX =
+    !is.isNumber(tapObj.distanceX) ||
+    (Math.abs(tapObj.distanceX) < distanceStandard &&
+      (tapObj.clientX || tapObj.pageX))
+  const tapY =
+    !is.isNumber(tapObj.distanceY) ||
+    (Math.abs(tapObj.distanceY) < distanceStandard &&
+      (tapObj.clientY || tapObj.pageY))
   const result = tapObj.timeGap < timeStandard && tapX && tapY
   return result
 }
@@ -60,13 +61,21 @@ function isMove(self) {
   // x > y 代表左右滑动， 反之则为上下滑动
   if (x1 > y1) {
     if (z > xyMultiple) {
-      return tapObj.distanceX < -moveStandard ? 'right' : tapObj.distanceX > moveStandard ? 'left' : false
+      return tapObj.distanceX < -moveStandard
+        ? 'right'
+        : tapObj.distanceX > moveStandard
+          ? 'left'
+          : false
     } else {
       return false
     }
   } else {
     if (z > xyMultiple) {
-      return tapObj.distanceY < -moveStandard ? 'down' : tapObj.distanceY > moveStandard ? 'up' : false
+      return tapObj.distanceY < -moveStandard
+        ? 'down'
+        : tapObj.distanceY > moveStandard
+          ? 'up'
+          : false
     } else {
       return false
     }
@@ -81,9 +90,7 @@ function isMove(self) {
  */
 function touchstart(e, self) {
   const touches = e.touches[0]
-  const {
-    tapObj
-  } = self
+  const { tapObj } = self
   if (!tapObj) return // fix: null的时候过滤掉，场景为v-if两行文本同个位置切换显示
   tapObj.pageX = touches.pageX
   tapObj.pageY = touches.pageY
@@ -97,9 +104,7 @@ function touchend(e, self, modifiers) {
   // http://www.cnblogs.com/yexiaochai/p/3462657.html
   // touchend时，touches与targetTouches信息会被删除，changedTouches保存的最后一次的信息，最好用于计算手指信息
   const touches = e.changedTouches[0]
-  const {
-    tapObj
-  } = self
+  const { tapObj } = self
   if (!tapObj) return // fix: null的时候过滤掉，场景为v-if两行文本同个位置切换显示
   tapObj.timeGap = new Date() - tapObj.touchStartTime
   tapObj.distanceX = tapObj.pageX - touches.pageX
@@ -130,7 +135,9 @@ function _callback(el, binding) {
       window.location = el.href
       return
     } else if (is.isUndef(callback)) {
-      console.error('param callback is undefined, please check the function exist')
+      console.error(
+        'param callback is undefined, please check the function exist'
+      )
       return
     }
     callback.event = e
