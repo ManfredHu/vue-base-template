@@ -1,4 +1,6 @@
-/* eslint no-use-before-define: 0 */
+/* eslint-disable no-unused-expressions */
+// For authoring Nightwatch tests, see
+// https://nightwatchjs.org/guide
 
 module.exports = {
   'index test': browser => {
@@ -11,7 +13,7 @@ module.exports = {
       .end()
   },
   'ToTop.vue test': browser => {
-    browser.url('http://localhost:9112/#/totop')
+    browser.url('http://localhost:9110/#/totop')
     browser.assert.elementPresent('.totop')
     browser.expect.element('.totop').to.be.visible
     browser.click('.totop')

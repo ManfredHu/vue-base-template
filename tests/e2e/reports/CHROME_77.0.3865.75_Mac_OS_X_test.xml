@@ -5,9 +5,9 @@
 
   <testsuite name="test"
     errors="0" failures="0" hostname="" id="" package="test" skipped="0"
-    tests="2" time="2.688" timestamp="">
+    tests="2" time="2.925" timestamp="">
   
-    <testcase name="index test" classname="test" time="0.4090" assertions="4">
+    <testcase name="index test" classname="test" time="0.4100" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="ToTop.vue test" classname="test" time="2.279" assertions="3">
+    <testcase name="ToTop.vue test" classname="test" time="2.515" assertions="3">
 
     
 

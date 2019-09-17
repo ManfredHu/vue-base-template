@@ -3,17 +3,17 @@
   "version": "1.0.1",
   "description": "vue-base-plugin js模板",
   "author": "ManfredHu",
-  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit",
-    "test:dev": "jest --watchAll --no-cache",
+    "dev": "vue-cli-service serve",
     "eslint-fix": "eslint src/**/*.vue --fix",
     "pub": "npm run build && npm version patch -f",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:dev": "jest --watchAll --no-cache",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit",
     "version": "sh autocm.sh"
   },
   "dependencies": {
@@ -53,5 +53,6 @@
     "selenium-server": "^3.141.59",
     "style-resources-loader": "^1.2.1",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "license": "MIT"
 }
