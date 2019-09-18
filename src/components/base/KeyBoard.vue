@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @keyup="onKeyUp" tabindex="0">
     <div
       class="mask"
       v-tap.prevent="triggerBlur"
@@ -14,7 +14,7 @@
           readonly
           class="phoneInput"
           :placeholder="placeHolder"
-          :value="beautifyPhone"
+          v-model="beautifyPhone"
         />
       </div>
       <div class="shell">
@@ -59,7 +59,7 @@ export default {
       type: Number,
       default: 0
     },
-    keyPress: Function,
+    keyPress: String,
     finishBtn: {
       default: 1
     },
@@ -92,36 +92,48 @@ export default {
   },
   methods: {
     typeText(num) {
-      this.keyPress && this.keyPress({
+      this.$parent[this.keyPress]({
         type: 'enter',
         value: num
       })
     },
     deleteText() {
-      this.keyPress && this.keyPress({
+      this.$parent[this.keyPress]({
         type: 'delete',
         value: undefined
       })
     },
     clearText() {
-      this.keyPress && this.keyPress({
+      this.$parent[this.keyPress]({
         type: 'clear',
         value: undefined
       })
     },
     finishEdit() {
       this.$emit('typing', 0)
-      this.keyPress && this.keyPress({
+      this.$parent[this.keyPress]({
         type: 'finish',
         value: undefined
       })
     },
     triggerBlur() {
       this.$emit('typing', 0)
-      this.keyPress && this.keyPress({
+      this.$parent[this.keyPress]({
         type: 'cancel',
         value: undefined
       })
+    },
+    onKeyUp(e) {
+      const key = parseInt(e.key)
+      if (key >= 0 && key < 10 ) {
+        this.typeText(key)
+      } else if (e.key === 'x') {
+        this.typeText(e.key.toUpperCase())
+      } else if (e.key === 'Backspace') {
+        this.deleteText()
+      } else if (e.key === 'Enter') {
+        this.finishEdit()
+      }
     }
   },
   computed: {

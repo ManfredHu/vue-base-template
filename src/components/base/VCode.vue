@@ -88,10 +88,6 @@ export default {
   props: {
     type: {
       type: String,
-      validator: (value) => [
-        '',
-        'idcard'
-      ].indexOf(value) !== -1,
       default: ''
     },
     keyPress: Function,
