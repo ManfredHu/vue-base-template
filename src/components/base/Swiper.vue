@@ -1,5 +1,5 @@
 <template>
-  <swiper :options="swiperOption" class="swiper-box">
+  <swiper :options="swiperOption" class="swiper-box" ref="swiperInstance">
     <swiper-slide
       class="swiper-item"
       v-for="(item, index) in listData"
