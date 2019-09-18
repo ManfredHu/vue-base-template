@@ -59,7 +59,7 @@ export default {
       type: Number,
       default: 0
     },
-    keyPress: String,
+    keyPress: Function,
     finishBtn: {
       default: 1
     },
@@ -92,33 +92,33 @@ export default {
   },
   methods: {
     typeText(num) {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'enter',
         value: num
       })
     },
     deleteText() {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'delete',
         value: undefined
       })
     },
     clearText() {
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'clear',
         value: undefined
       })
     },
     finishEdit() {
       this.$emit('typing', 0)
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'finish',
         value: undefined
       })
     },
     triggerBlur() {
       this.$emit('typing', 0)
-      this.$parent[this.keyPress]({
+      this.keyPress && this.keyPress({
         type: 'cancel',
         value: undefined
       })

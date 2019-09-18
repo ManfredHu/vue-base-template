@@ -19,6 +19,8 @@ yarn-error.log*
 chromedriver.log*
 selenium-debug.log
 
+tests/e2e/reports/
+
 # Editor directories and files
 .idea
 .vscode
