@@ -43,7 +43,7 @@
         <div class="address-container">
           <ul v-if="tab === 1">
             <li
-              v-for="(item, index) in provinces"
+              v-for="(item, index) in filterProvince"
               :class="{ active: item === currentProvince }"
               @click="chooseProvince(item)"
               :key="index"
@@ -54,7 +54,7 @@
           <template>
             <ul v-if="tab === 2">
               <li
-                v-for="(item, index) in cities"
+                v-for="(item, index) in filterCities"
                 :class="{ active: item === currentCity }"
                 @click="chooseCity(item)"
                 :key="index"
@@ -88,7 +88,8 @@
 <script>
 import baseComponent from '@/base/baseComponent'
 import DISTRICTS from '@/data/districts.js'
-
+import debug from 'debug'
+const log = debug('worker:Distpicker')
 const DEFAULT_CODE = 100000
 
 // 支持传入地区预占位置
@@ -114,7 +115,8 @@ export default {
           area: '区'
         }
       }
-    }
+    },
+    ignoreArea: { type: [Object], default: () => {} }
   },
   data() {
     return {
@@ -137,15 +139,43 @@ export default {
   computed: {
     lockProvince() {
       if (this.lockAddressSelect) {
-        return !!this.lockAddressSelect.split(/-|\|/)[0]
+        return !!parseInt(this.lockAddressSelect.split(/-|\|/)[0])
       }
       return false
     },
     lockCity() {
       if (this.lockAddressSelect) {
-        return !!this.lockAddressSelect.split(/-|\|/)[1]
+        return !!parseInt(this.lockAddressSelect.split(/-|\|/)[1])
       }
       return false
+    },
+    filterProvince() {
+      if (this.ignoreArea && this.ignoreArea.province && this.ignoreArea.province.length > 0) {
+        const rst = {}
+        for (const [key, value] of Object.entries(this.provinces)) {
+          if (!this.ignoreArea.province.includes(value)) {
+            rst[key] = value
+          } else {
+            log('忽略省份', key, value)
+          }
+        }
+        return rst
+      }
+      return this.provinces
+    },
+    filterCities() {
+      if (this.ignoreArea && this.ignoreArea.city && this.ignoreArea.city.length > 0) {
+        const rst = {}
+        for (const [key, value] of Object.entries(this.cities)) {
+          if (!this.ignoreArea.city.includes(value)) {
+            rst[key] = value
+          } else {
+            log('忽略城市', key, value)
+          }
+        }
+        return rst
+      }
+      return this.cities
     }
   },
   watch: {
