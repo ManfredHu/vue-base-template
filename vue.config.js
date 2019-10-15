@@ -4,7 +4,7 @@ const path = require('path')
 module.exports = {
   devServer: {
     port: 9110,
-    open: true, // npm run dev自动打开浏览器
+    open: false, // npm run dev自动打开浏览器
     disableHostCheck: true,
     headers: {
       "Access-Control-Allow-Origin": "*"
