@@ -1,11 +1,16 @@
+# vue-base-plugin
+
+Vue 基础插件&组件
+
 ## Additional functions
 
 - imagemin plugin
 - CSS reset & rem
 - Animation Less library
-- vConsole
+- vConsole dynamic load
+- base component
 
-# CSS reset & rem 方案
+## CSS reset & rem 方案
 
 具体作用原因是因为`src/style/base/import.reset.less`设置了(初始化)
 
@@ -31,13 +36,13 @@ width: 750 / @rem
 其次，`rem.js`脚本会计算 html 标签的 font-size 动态改变这个值使屏幕宽度一直为`750/@rem`。
 具体实现为: html 的`font-size`为 document.documentElement.clientWidth / 375，最大为 200。
 
-# vConsole
+## vConsole
 
 vconsole 比 eruda 小，是微信团队推出的移动端调试工具，框架封装了这块，可以在链接上加上`debug=vconsole`或者`vconsole=true`开启调试模式。console.log 会在这里显示
 
-# 命名规范
+## 命名规范
 
-## 组件命名规范
+### 组件命名规范
 
 组件命名需要以大驼峰形式，name 以连字符形式
 
@@ -51,7 +56,7 @@ export default {
 }
 ```
 
-# 组件列表
+## 组件列表
 
 - [x] 数字键盘（需要有数字按键）
   - [x] 长按删除键清除全部文本
@@ -67,7 +72,7 @@ export default {
 - [x] 验证码虚拟键盘
 - [x] 身份证虚拟键盘
 
-## 截图
+### 示例截图
 
 ![浮层](./docs/components/dialog.png)
 ![确认框双按钮](./docs/components/confirm_twoBtn.png)
@@ -80,11 +85,11 @@ export default {
 ![成功提示](./docs/components/toast.png)
 ![加载中提示](./docs/components/toast2.png)
 
-# 单元测试
+## 单元测试
 
 开源看[vue-test-utils](https://vue-test-utils.vuejs.org/zh/)
 
-## 测试异步行为
+### 测试异步行为
 
 `Vue.$nextTick`和`setTimeout`都可以配合 done 来使用，如 Dialog.spec.js 里面
 
@@ -120,9 +125,19 @@ describe('plugin Dialog.vue', () => {
 })
 ```
 
-## 点击事件
+### 点击事件
 
 有同学会好奇我们用到了`v-tap`，但是我们的测试用例写的是`wrapper.find('.comfirm-btn_primary.comfirm-btn').trigger('click')`。
 这是因为我们的`v-tap`指令是适配 click 和 touch 的。在 PC 端会用`click`取代`touchStart/touchEnd`等。
 
 因为 tap 会依据 `touchStart` 和 `touchEnd` 的坐标计算点击，这在测试用例并不容易实现。所以写测试的时候我们最好用 click 替代。
+
+## e2e 测试
+
+e2e 测试用 cypress 而不是 nightwatch，有这么几点原因
+
+1. nightwatch 对浏览器版本支持有限制，比如我最近被 Chrome 更新了到 76 的版本，nightwatch 测试用例就无法运行了，需要兼容，具体可以看[这里](https://github.com/vuejs/vue-cli/issues/4522)。当然 vue-cli 的 soda 是修复了，但是版本还在 rc，vue-cli 拉下来的代码 e2e 测试还是不能运行的
+2. nightwatch 需要依赖 webdriver，JavaSDK 等环境，虽然支持多浏览器测试但是在现在的前端大环境下，多浏览器兼容基本没用到。故像 cypress 和 puppeteer 这种依赖 Chrome 的单浏览器支持的测试模式可以推行
+
+这里用到了 Cypress，可以支持在 MacOS 下运行。CentOS 环境测试失败，错误未知。
+puppeteer+Jest 的方案可支持 MacOS/CentOS/Docker 等环境，代码没有写。
