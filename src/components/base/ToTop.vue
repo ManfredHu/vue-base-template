@@ -43,6 +43,10 @@ export default {
         window.scrollTo(0, that.scrollTop + ispeed)
         if (that.scrollTop <= that.speed) {
           window.scrollTo(0, 0)
+          // to fix dialog mask lock
+          if (document.querySelector('#app')) {
+            document.querySelector('#app').style.top = '0'
+          }
           return false
         }
         return true
