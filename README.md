@@ -1,6 +1,12 @@
-# vue-base-plugin
+# vue-base-template
 
 Vue 基础插件&组件
+
+## 使用方法
+```bash
+# 拷贝样板项目
+git clone git@github.com:ManfredHu/vue-base-template.git
+```
 
 ## Additional functions
 
@@ -134,7 +140,7 @@ describe('plugin Dialog.vue', () => {
 
 ## e2e 测试
 
-e2e 测试用 cypress 而不是 nightwatch，有这么几点原因
+e2e 测试用 cypress 而不是 nightwatch，其实最好用puppeteer，有这么几点原因
 
 1. nightwatch 对浏览器版本支持有限制，比如我最近被 Chrome 更新了到 76 的版本，nightwatch 测试用例就无法运行了，需要兼容，具体可以看[这里](https://github.com/vuejs/vue-cli/issues/4522)。当然 vue-cli 的 soda 是修复了，但是版本还在 rc，vue-cli 拉下来的代码 e2e 测试还是不能运行的
 2. nightwatch 需要依赖 webdriver，JavaSDK 等环境，虽然支持多浏览器测试但是在现在的前端大环境下，多浏览器兼容基本没用到。故像 cypress 和 puppeteer 这种依赖 Chrome 的单浏览器支持的测试模式可以推行

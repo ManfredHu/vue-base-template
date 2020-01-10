@@ -1,7 +1,7 @@
 {
-  "name": "vue-base-plugin",
+  "name": "vue-base-template",
   "version": "1.0.1",
-  "description": "vue-base-plugin js模板",
+  "description": "vue-base-template js模板",
   "author": "ManfredHu",
   "scripts": {
     "serve": "vue-cli-service serve",
