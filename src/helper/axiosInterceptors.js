@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // axios.defaults.timeout = 2000 // default 1000
-axios.defaults.baseURL = '//chong.qq.com'
+// axios.defaults.baseURL = '//www.qq.com'
 
 export default () => {
   axios.interceptors.request.use((config) => {
