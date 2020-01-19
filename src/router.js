@@ -58,24 +58,24 @@ const routes = [{
 }]
 
 // 下面的代码有在调试模式下面才会运行, 正式发布的时候不会运行
-if (process.env.NODE_ENV === 'development') {
-  // Component preview
-  const componentsList = [
-    '/com/Dialog',
-    '/com/Confirm',
-    '/com/Swiper',
-    '/com/Top',
-    '/com/KeyBoard'
-  ]
-  componentsList.forEach(item => {
-    routes.push({
-      path: item.toLocaleLowerCase(),
-      component() {
-        return import(`./components/${item.split('/').pop()}`)
-      }
-    })
-  })
-}
+// if (process.env.NODE_ENV === 'development') {
+//   // Component preview
+//   const componentsList = [
+//     '/com/Dialog',
+//     '/com/Confirm',
+//     '/com/Swiper',
+//     '/com/Top',
+//     '/com/KeyBoard'
+//   ]
+//   componentsList.forEach(item => {
+//     routes.push({
+//       path: item.toLocaleLowerCase(),
+//       component() {
+//         return import(`./components/${item.split('/').pop()}`)
+//       }
+//     })
+//   })
+// }
 
 export default new Router({
   routes

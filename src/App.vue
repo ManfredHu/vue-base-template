@@ -1,15 +1,13 @@
 <template>
-  <div id="app" class="app">
+  <div id="app">
     <router-view />
   </div>
 </template>
 
 <script>
-// import navigate from './components/navigate'
 export default {
   name: 'App',
   components: {
-    // Nav: navigate // rename
   },
   created() {
     if (this.$router) {
@@ -26,7 +24,7 @@ export default {
 
 .mx_reset();
 
-.app {
+#app {
   height: 100%;
   width: 100%;
   background-image: radial-gradient(ellipse at 50% 10%, #acc8b4 30%, #5b816e);
