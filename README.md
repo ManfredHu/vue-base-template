@@ -15,6 +15,7 @@ git remote set-url origin your-git-oa-ssh-url
 # 新增远程仓库base地址作为项目的基础模版地址
 git remote add base git@github.com:ManfredHu/vue-base-template.git
 # 把代码推动到origin的develop分支
+git checkout -b dev
 git push -u origin dev
 # 切换到master推送
 git checkout master
