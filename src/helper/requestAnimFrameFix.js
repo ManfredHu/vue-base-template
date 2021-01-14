@@ -4,18 +4,21 @@ const log = debug('worker:requestAniFix')
 function requestAnimFrameFix() {
   localStorage.debug = 'worker:*'
   log('requestAnimFrameFix')
-  window.requestAnimFrame = (function() {
-    return window.requestAnimationFrame ||
+  window.requestAnimFrame = (function () {
+    return (
+      window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.oRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      function _requestAnimFrame( callback ) {
+      function _requestAnimFrame(callback) {
         window.setTimeout(callback, 1000 / 60)
       }
+    )
   })()
   window.cancelAnimFrame = (function () {
-    return window.cancelAnimationFrame ||
+    return (
+      window.cancelAnimationFrame ||
       window.webkitCacelAnimationFrame ||
       window.mozCacelAnimationFrame ||
       window.oCacelAnimationFrame ||
@@ -23,6 +26,7 @@ function requestAnimFrameFix() {
       function _cacelAnimFrame(id) {
         window.clearTimeout(id)
       }
+    )
   })()
 }
 export default requestAnimFrameFix

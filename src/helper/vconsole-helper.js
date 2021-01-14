@@ -3,9 +3,13 @@ export default () => {
    * local file method, using dynamic imports, see https://webpack.docschina.org/guides/code-splitting
    */
 
-  if (!/debug=vconsole/.test(window.location) && !/vconsole=true/.test(window.location)) return
+  if (
+    !/debug=vconsole/.test(window.location) &&
+    !/vconsole=true/.test(window.location)
+  )
+    return
   // using webapck split chunk and rename async.vconsole.[hashName].js
-  import( /* webpackChunkName: "vconsole" */ 'vconsole').then(VConsole => {
+  import(/* webpackChunkName: "vconsole" */ 'vconsole').then((VConsole) => {
     let vc = null
     if (typeof VConsole.default === 'function') {
       vc = new VConsole.default()

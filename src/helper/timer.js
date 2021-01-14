@@ -14,8 +14,8 @@ export function setInterval() {
 }
 
 export function destory() {
-  timeoutArr.forEach(item => clearTimeout(item))
-  intervalArr.forEach(item => clearInterval(item))
+  timeoutArr.forEach((item) => clearTimeout(item))
+  intervalArr.forEach((item) => clearInterval(item))
 }
 
 export function logTimer() {

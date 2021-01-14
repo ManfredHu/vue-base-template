@@ -17,7 +17,8 @@ function rem(structWidth = 375) {
   }
   const docEl = doc.documentElement
   // 判断是横竖屏
-  const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
+  const resizeEvt =
+    'orientationchange' in window ? 'orientationchange' : 'resize'
 
   function recalc() {
     const clientWidth = docEl.clientWidth
