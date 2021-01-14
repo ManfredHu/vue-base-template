@@ -99,5 +99,5 @@ const routes = [
 
 export default new Router({
   routes,
-  scrollBehavior: () => ({ y: 0 })
+  scrollBehavior: () => ({ y: 0 }) // page switch scroll to top
 })

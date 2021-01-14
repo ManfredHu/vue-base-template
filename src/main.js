@@ -17,7 +17,7 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: (h) => h(App)
 }).$mount('#app')
 
 // https://seminelee.github.io/2016/08/29/bfcache/

@@ -24,7 +24,7 @@ export default {
     // check https://localforage.github.io/localForage/#settings-api-setdriver
     localforage.config({
       driver: localforage.LOCALSTORAGE,
-      name: 'cache',
+      name: 'cache'
     })
 
     // open debug log
@@ -39,27 +39,27 @@ export default {
       $time: dayjs,
       $axios: axios,
       $cache: localforage,
-      $tool: {},
+      $tool: {}
     })
 
     // Mount hu-tool
     const mouteTool = [
       {
         name: 'is',
-        value: is,
+        value: is
       },
       {
         name: 'phone',
-        value: phone,
+        value: phone
       },
       {
         name: 'ua',
-        value: ua,
+        value: ua
       },
       {
         name: 'url',
-        value: url,
-      },
+        value: url
+      }
     ]
 
     mouteTool.forEach((item) => {
@@ -77,5 +77,5 @@ export default {
 
     // axios拦截器
     axiosInterceptors()
-  },
+  }
 }
